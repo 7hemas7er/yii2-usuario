@@ -15,6 +15,19 @@ use yii\rbac\Item;
 
 class Permission extends AbstractAuthItem
 {
+
+  /**
+   * @inheritdoc
+   */
+  public function rules()
+  {
+      return [
+          [['name'], 'trim'],
+          [['name'], 'required'],
+          [['name'],'match','pattern' => '/^\/[\w]+\/[[a-zA-Z0-9*]+$/']
+      ];
+  }
+
     public function getType()
     {
         return Item::TYPE_PERMISSION;
